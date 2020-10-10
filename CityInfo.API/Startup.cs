@@ -1,3 +1,4 @@
+using CityInfo.API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Formatters;
@@ -34,6 +35,8 @@ namespace CityInfo.API
                 options.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter());
                 options.InputFormatters.Add(new XmlDataContractSerializerInputFormatter(options));
             });
+
+            services.AddTransient<IMailService, LocalMailService>();
             services.AddControllers();
         }
     }
